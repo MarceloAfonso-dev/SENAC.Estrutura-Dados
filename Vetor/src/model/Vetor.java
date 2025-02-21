@@ -40,6 +40,21 @@ public class Vetor {
         return -1;
     }
 
+    public boolean adicionaInicio(int posicao, String elemento) {
+        if (posicao >= 0 && posicao < this.tamanho) {
+            for (int i = this.tamanho - 1; i >= posicao; i--) {
+                this.elementos[i + 1] = this.elementos[i];
+            }
+
+            this.elementos[posicao] = elemento;
+            this.tamanho++;
+        }else {
+            throw new IllegalArgumentException("Posição inválida.");
+        }
+        return true;
+
+    }
+
     public String toString() {
         StringBuilder s = new StringBuilder();
         s.append("[");
