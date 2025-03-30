@@ -8,26 +8,21 @@ public class Paciente {
         this.nome = nome;
         this.idade = idade;
         this.cpf = cpf;
-        preferencial = this.idade >= 60 ? true : false;
+        preferencial = idade >= 60;
     }
 
-    public String getNome() {
-        return nome;
-    }
-
-    public int getIdade() {
-        return idade;
-    }
-
-    public String getCpf() {
-        return cpf;
+    public boolean isPreferencial() {
+        return preferencial;
     }
 
     public String toString() {
-        return "Nome: " + this.nome + ", Idade: " + this.idade + ", CPF: " + this.cpf;
+        return "Nome: " + nome + ", Idade: " + idade + ", CPF: " + cpf;
     }
 
-    public boolean equals(Paciente paciente) {
-        return this.nome.equals(paciente.getNome()) && this.idade == paciente.getIdade() && this.cpf.equals(paciente.getCpf());
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Paciente)) return false;
+        Paciente p = (Paciente) obj;
+        return nome.equals(p.nome) && idade == p.idade && cpf.equals(p.cpf);
     }
 }

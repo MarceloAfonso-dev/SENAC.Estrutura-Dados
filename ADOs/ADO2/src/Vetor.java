@@ -3,88 +3,40 @@ public class Vetor {
     public int tamanho;
 
     public Vetor(int capacidade) {
-        this.elementos = new Object[capacidade];
-        this.tamanho = 0;
+        elementos = new Object[capacidade];
+        tamanho = 0;
     }
 
     public void adiciona(Object elemento) throws Exception {
-        this.aumentaCapacidade();
-        this.elementos[this.tamanho] = elemento;
-        this.tamanho++;
+        aumentaCapacidade();
+        elementos[tamanho] = elemento;
+        tamanho++;
     }
 
     public int tamanho() {
-        return this.tamanho;
+        return tamanho;
     }
 
-    @Override
-    public String toString() {
-        StringBuilder s = new StringBuilder();
-        s.append("[");
-
-        for (int i = 0; i < this.tamanho - 1; i++) {
-            s.append(this.elementos[i]);
-            if (i < this.tamanho - 2) {
-                s.append("\n");
-            }
-        }
-
-        s.append("]");
-
-        return s.toString();
-    }
-
-    public Object busca(int posicao) throws Exception {
-        if (posicao >= 0 && posicao < this.tamanho) {
-            return this.elementos[posicao];
-        } else {
-            throw new Exception("Posição inválida.");
-        }
-    }
-
-    public int busca1(Object elemento) {
-        for (int i = 0; i < this.tamanho; i++) {
-            if (this.elementos[i].equals(elemento)) {
-                return i;
-            }
-        }
-
-        return -1;
-    }
-
-    public boolean adicionaInicio(int posicao, Object elemento) throws Exception {
-        this.aumentaCapacidade();
-        if (posicao >= 0 && posicao < this.tamanho) {
-            for (int i = this.tamanho - 1; i >= posicao; i--) {
-                this.elementos[i + 1] = this.elementos[i];
-            }
-
-            this.elementos[posicao] = elemento;
-            this.tamanho++;
-        }
-        return true;
+    public Object busca(int pos) throws Exception {
+        if (pos < 0 || pos >= tamanho) throw new Exception("Posição inválida");
+        return elementos[pos];
     }
 
     private void aumentaCapacidade() {
-        if (this.tamanho == this.elementos.length) {
-            Object[] elementosNovos = new Object[this.elementos.length * 2];
-            for (int i = 0; i < this.elementos.length; i++) {
-                elementosNovos[i] = this.elementos[i];
+        if (tamanho == elementos.length) {
+            Object[] novo = new Object[elementos.length * 2];
+            for (int i = 0; i < elementos.length; i++) {
+                novo[i] = elementos[i];
             }
-
-            this.elementos = elementosNovos;
+            elementos = novo;
         }
     }
 
-    public void remove(int posicao) throws Exception {
-        if (posicao >= 0 && posicao < this.tamanho) {
-            for (int i = posicao; i < this.tamanho - 1; i++) {
-                this.elementos[i] = this.elementos[i + 1];
-            }
-
-            this.tamanho--;
-        } else {
-            throw new Exception("Posição inválida.");
+    public void remove(int pos) throws Exception {
+        if (pos < 0 || pos >= tamanho) throw new Exception("Posição inválida");
+        for (int i = pos; i < tamanho - 1; i++) {
+            elementos[i] = elementos[i + 1];
         }
+        tamanho--;
     }
 }
