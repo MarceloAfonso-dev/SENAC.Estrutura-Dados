@@ -17,7 +17,7 @@ public class MainTest {
         conta3.depositar(new BigDecimal("3000"));
         conta4.depositar(new BigDecimal("1000000"));
         conta5.depositar(new BigDecimal("100000000"));
-        conta6.sacar(new BigDecimal("250"));
+        conta6.depositar(new BigDecimal("250"));
 
 
         VetorObjeto vetor = new VetorObjeto(5);
